@@ -1,7 +1,7 @@
 '''plab2_gruppe20'''
 
 
-class Behaviour():
+class Behaviour:
     '''Behaviour class for recommending actuator action'''
 
     def __init__(self, priority):
@@ -13,5 +13,7 @@ class Behaviour():
         self.active_flag = True
         self.halt_request = False
         self.priority = priority
+        self.match_degree = 0
+        self.weight = priority*self.match_degree
 
 

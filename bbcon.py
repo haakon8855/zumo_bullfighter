@@ -12,12 +12,13 @@ class BBCON():
     timestep = 0.5
 
     def __init__(self):
+        self.running = True
         self.behaviours = []
         self.active_behaviours = []
         self.inactive_behaviours = []
         self.sensobs = []
         self.motob = Motob()
-        self.arbitrator = Arbitrator()
+        self.arbitrator = Arbitrator(self)
 
     def add_behaviour(self, behaviour):
         '''Adds a new behaviour to the list of behaviours'''
@@ -49,8 +50,10 @@ class BBCON():
         '''Runs one timestep by updating sensors,
         behaviors, arbitrator and motors'''
         self.update_sensobs()
-        mr_list = self.update_behaviours()
-        motor_recommendation = self.arbitrator.choose_action(mr_list)
+        self.update_behaviours()
+        motor_recommendation, halt = self.arbitrator.choose_action()
+        if halt:
+            self.running = False
         self.update_motob(motor_recommendation)
         sleep(self.timestep)
         self.reset_sensobs()
@@ -67,14 +70,15 @@ class BBCON():
 
     def update_behaviours(self):
         '''Instructs all behaviours to make a motor recommendation.'''
-        mr_list = []
         for behaviour in self.active_behaviours:
             behaviour.update()
-            weight = behaviour.get_weight()
-            moto_rec = behaviour.get_mr()
-            mr_list.append(tuple((weight, moto_rec)))
-        return mr_list
 
     def update_motob(self, moto_rec):
         '''Updates the motobs to do the requested motor recommendation'''
         self.motob.update(moto_rec)
+
+
+if __name__ == "__main__":
+    BBCON = BBCON()
+    while BBCON.running:
+        BBCON.run_one_timestep(BBCON)

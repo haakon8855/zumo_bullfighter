@@ -79,6 +79,6 @@ class BBCON():
 
 
 if __name__ == "__main__":
-    BBCON = BBCON()
-    while BBCON.running:
-        BBCON.run_one_timestep(BBCON)
+    BB = BBCON()
+    while BB.running:
+        BB.run_one_timestep()

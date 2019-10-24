@@ -5,4 +5,4 @@ class Behaviour():
     '''Behaviour class for recommending actuator action'''
 
     def __init__(self):
-        pass
+        self.bbcon = None #Må endres

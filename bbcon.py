@@ -1,6 +1,9 @@
 '''plab2_gruppe20'''
 
+from time import sleep
+
 from arbitrator import Arbitrator
+from motob import Motob
 
 
 class BBCON():
@@ -13,7 +16,7 @@ class BBCON():
         self.active_behaviours = []
         self.inactive_behaviours = []
         self.sensobs = []
-        self.motobs = []
+        self.motob = Motob()
         self.arbitrator = Arbitrator()
 
     def add_behaviour(self, behaviour):
@@ -41,3 +44,33 @@ class BBCON():
                 behaviour not in self.inactive_behaviours):
             self.active_behaviours.remove(behaviour)
             self.inactive_behaviours.append(behaviour)
+
+    def run_one_timestep(self):
+        '''Runs one timestep by updating sensors,
+        behaviors, arbitrator and motors'''
+        self.update_sensobs()
+        moto_rec = self.update_behaviours()
+        moto_rec = self.arbitrator.choose_action(moto_rec)
+        self.update_motob(moto_rec)
+        sleep(self.timestep)
+        self.reset_sensobs()
+
+    def update_sensobs(self):
+        '''Instructs all sensobs to get value from sensors and save it.'''
+        for sensob in self.sensobs:
+            sensob.update()
+
+    def reset_sensobs(self):
+        '''Instructs all sensobs to reset if it needs to'''
+        for sensob in self.sensobs:
+            sensob.reset()
+
+    def update_behaviours(self):
+        '''Instructs all behaviours to make a motor recommendation.'''
+        for behaviour in self.active_behaviours:
+            behaviour.update()
+        return []
+
+    def update_motob(self, moto_rec):
+        '''Updates the motobs to do the requested motor recommendation'''
+        self.motob.update(moto_rec)

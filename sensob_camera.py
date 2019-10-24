@@ -1,10 +1,13 @@
 """Sensor object - Camera"""
-import timeit
-from sensob import Sensob
-from imager2 import Imager
-from PIL import Image
-from camera_test import CameraTest
 
+from sensob import Sensob
+from PIL import Image
+
+#from dependencies.imager2 import Imager
+#from dependencies.camera import Camera
+
+from camera_test import CameraTest
+from imager2 import Imager
 
 class SensobCamera(Sensob):
 
@@ -25,27 +28,29 @@ class SensobCamera(Sensob):
         self.imager.set_image(self.image)
 
     def calculate_value(self):
-        """Returns how many red-pixels there are in the current image (in percentage)"""
+        """Returns how many red-pixels there are in the current image (in percent)"""
         self.imager.get_image_dims()
-        total_pixels = int(self.imager.xmax) * int(self.imager.ymax)
-        red_pixels = 0
-        for x in range(int(self.imager.xmax)):
-            for y in range(int(self.imager.ymax)):
-                #print("x = " + str(x) + " y = " + str(y))
-                r, g, b = self.imager.get_pixel(x, y)
-                if r > 140 and g < 120 and b < 120:
-                    red_pixels += 1
-        return red_pixels/total_pixels
+        total_pixels = int(self.imager.xmax) * int(self.imager.ymax) / 3
+        list_sides = [0, 0, 0]
+        for side in range(3):
+            red_pixels = 0
+            for x in range(int(int(self.imager.xmax)/3)*(side), int(int(self.imager.xmax)/3)*(side+1)):
+                for y in range(int(self.imager.ymax)):
+                    print("x = " + str(x) + " y = " + str(y))
+                    r, g, b = self.imager.get_pixel(x, y)
+                    if r > 140 and g < 120 and b < 120:
+                        red_pixels += 1
+            list_sides[side] = red_pixels / total_pixels
+        return list_sides
 
     def get_pixel(self, x, y):
         return self.image.getpixel((x, y))
 
 if __name__ == '__main__':
-    camera_test = CameraTest("el-matador.png")
+    #camera_test = Camera()
+    camera_test2 = CameraTest("el-matador.png")
     imager = Imager()
-    sensob_camera = SensobCamera(camera_test, imager)
+    sensob_camera = SensobCamera(camera_test2, imager)
+    #while True:
     sensob_camera.update_image()
-    start = timeit.timeit()
-    print(sensob_camera.calculate_value())
-    end = timeit.timeit()
-    print(end-start)
+    print("Rode pixler i %: " + str(sensob_camera.calculate_value()))

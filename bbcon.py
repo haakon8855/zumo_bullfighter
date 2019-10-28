@@ -5,6 +5,16 @@ from time import sleep
 from arbitrator import Arbitrator
 from motob import Motob
 
+from avoid_line_crossing import AvoidLineCrossing
+from avoid_wall import AvoidWall
+from default_movement import DefaultMovement
+from follow_red import FollowRed
+
+from sensob_border_lines import SensobBorderLines
+from sensob_camera import SensobCamera
+from sensob_push_button import SensobPushButton
+from sensob_ultrasonic import SensobUltrasonic
+
 
 class BBCON:
     """Behaviour based controller"""
@@ -19,6 +29,19 @@ class BBCON:
         self.sensobs = []
         self.motob = Motob()
         self.arbitrator = Arbitrator(self)
+        self.setup()
+
+    def setup(self):
+        """Sets up behaviours and sensobs"""
+        sensob_border_lines = SensobBorderLines()
+        sensob_camera = SensobCamera()
+        sensob_push_button = SensobPushButton()
+        sensob_ultrasonic = SensobUltrasonic()
+
+        self.behaviours.append(AvoidLineCrossing(self, [sensob_border_lines]))
+        self.behaviours.append(AvoidWall(self, [sensob_ultrasonic]))
+        self.behaviours.append(DefaultMovement(self, []))
+        self.behaviours.append(FollowRed(self, [sensob_camera]))
 
     def add_behaviour(self, behaviour):
         """Adds a new behaviour to the list of behaviours"""

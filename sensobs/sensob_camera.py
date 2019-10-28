@@ -9,6 +9,7 @@ from sensobs.camera import Camera
 #from imager2 import Imager
 
 class SensobCamera(Sensob):
+    """Camera sensob for detecting red pixels"""
 
     def __init__(self, camera, imager):
         super().__init__()
@@ -44,12 +45,3 @@ class SensobCamera(Sensob):
 
     def get_pixel(self, x, y):
         return self.image.getpixel((x, y))
-
-if __name__ == '__main__':
-    camera_test = Camera()
-    #camera_test2 = CameraTest("red-shades.png")
-    imager = Imager()
-    sensob_camera = SensobCamera(camera_test, imager)
-    while True:
-        sensob_camera.update_image()
-        print("Rode pixler i %: " + str(sensob_camera.calculate_value()))

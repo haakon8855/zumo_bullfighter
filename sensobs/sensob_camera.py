@@ -11,7 +11,7 @@ from camera import Camera
 class SensobCamera(Sensob):
     """Camera sensob for detecting red pixels"""
 
-    def __init__(self, camera, imager):
+    def __init__(self):
         super().__init__()
         self.camera = Camera()
         self.image = None       # self.image is an Image object

@@ -13,3 +13,6 @@ class Sensob():
 
     def get_value(self):
         return self.value
+
+    def reset(self):
+        """Resets"""

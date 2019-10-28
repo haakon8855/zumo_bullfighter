@@ -11,6 +11,7 @@ class AvoidLineCrossing(Behaviour):
         self.priority = 100   #May change
         self.match_degree = 0
         self.sensor_values = []
+        self.threshold = 0.2
 
     def sense_and_act(self):
         self.sensor_values = self.sensob_list[0].update()

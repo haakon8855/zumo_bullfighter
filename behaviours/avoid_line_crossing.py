@@ -8,14 +8,29 @@ class AvoidLineCrossing(Behaviour):
 
     def __init__(self):
         super().__init__()
-        self.priority = 3   #May change
+        self.priority = 100   #May change
         self.match_degree = 0
+        self.sensor_values = []
 
     def sense_and_act(self):
-        # TODO check if robot is on line
-        self.match_degree = 1
+        self.sensor_values = self.sensob_list[0].update()
+        if (self.sensor_values[0] < self.threshold or
+                self.sensor_values[1] < self.threshold or
+                self.sensor_values[2] < self.threshold):
+            self.update_mr("L", 150)
+            self.match_degree = 1
+
+        elif (self.sensor_values[3] < self.threshold or
+              self.sensor_values[4] < self.threshold or
+              self.sensor_values[5] < self.threshold): # Rar indentation, må ses på
+            self.update_mr("L", 150) # Kjør til venstre
+            self.match_degree = 1
+
+        else:
+            self.update_mr("F", 50) # Kjør rett fram
+            self.match_degree = 0
+
         self.update_weight(self.priority, self.match_degree)
-        self.update_mr("R", 180)
 
     def update(self):
         """Reads from sensors and gives a MR (Motor recommendation)"""

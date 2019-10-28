@@ -5,10 +5,9 @@ from math import exp
 class Behaviour:
     '''Behaviour class for recommending actuator action'''
 
-    def __init__(self):
-        # TODO self.bbcon = None
-        # TODO self.sensob_list = []
-        # TODO self.sensob_list.append(sensob)
+    def __init__(self, bbcon, sensob_list):
+        self.bbcon = bbcon
+        self.sensob_list = sensob_list
         self.motor_recommendations = []  # [Direction, speed%, Halt], [Turn_direction, degrees, halt]
         self.active_flag = True
         self.halt_request = False

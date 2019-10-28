@@ -1,7 +1,8 @@
 '''plab2_gruppe20'''
 
+from math import exp
+
 from behaviour import Behaviour
-import math
 
 
 class AvoidWall(Behaviour):
@@ -19,6 +20,6 @@ class AvoidWall(Behaviour):
 
     def sense_and_act(self):
         distance = self.ultrasonic.get_value()
-        self.match_degree = 1/(math.exp(distance))
+        self.match_degree = 1/(exp(distance))
         self.update_weight(self.priority, self.match_degree)
         self.update_mr("B", 50)

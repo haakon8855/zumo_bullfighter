@@ -3,7 +3,7 @@
 from sensob import Sensob
 
 from dependencies.imager2 import Imager
-from sensobs.camera import Camera
+from camera import Camera
 
 #from camera_test import CameraTest
 #from imager2 import Imager
@@ -13,9 +13,9 @@ class SensobCamera(Sensob):
 
     def __init__(self, camera, imager):
         super().__init__()
-        self.camera = camera
+        self.camera = Camera()
         self.image = None       # self.image is an Image object
-        self.imager = imager
+        self.imager = Imager()
 
     def update(self):
         self.update_image()
@@ -44,4 +44,5 @@ class SensobCamera(Sensob):
         return list_sides
 
     def get_pixel(self, x, y):
+        """Returns a pixel given by x and y"""
         return self.image.getpixel((x, y))

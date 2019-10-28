@@ -37,11 +37,16 @@ class BBCON:
         sensob_camera = SensobCamera()
         sensob_push_button = SensobPushButton()
         sensob_ultrasonic = SensobUltrasonic()
-
+        self.sensobs.append(sensob_border_lines)
+        self.sensobs.append(sensob_camera)
+        self.sensobs.append(sensob_push_button)
+        self.sensobs.append(sensob_ultrasonic)
         self.behaviours.append(AvoidLineCrossing(self, [sensob_border_lines]))
         self.behaviours.append(AvoidWall(self, [sensob_ultrasonic]))
         self.behaviours.append(DefaultMovement(self, []))
         self.behaviours.append(FollowRed(self, [sensob_camera]))
+        for behaviour in self.behaviours:
+            self.active_behaviours.append(behaviour)
 
     def add_behaviour(self, behaviour):
         """Adds a new behaviour to the list of behaviours"""

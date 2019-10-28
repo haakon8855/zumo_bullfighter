@@ -1,6 +1,6 @@
 '''plab2_gruppe20'''
 
-from dependencies.sensob import Sensob
+from sensob import Sensob
 from dependencies.reflectance_sensors import ReflectanceSensors
 
 

@@ -1,7 +1,10 @@
+"""Sensor-object: Ultrasonic"""
 from dependencies.ultrasonic import Ultrasonic
 from sensob import Sensob
 
+
 class SensobUltrasonic(Sensob):
+    """Class SensobUltrasonic"""
 
     def __init__(self, ultraSonic):
         super().__init__()

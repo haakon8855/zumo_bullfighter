@@ -5,11 +5,11 @@ from behaviour import Behaviour
 
 class FollowRed(Behaviour):
 
-    def __init__(self, sensob_camera):
-        super().__init__()
+    def __init__(self, bbcon, sensob_list):
+        super().__init__(bbcon, sensob_list)
         self.priority = 7  # May change
         self.match_degree = 0
-        self.sensob_camera = sensob_camera
+        self.sensob_camera = sensob_list[0]
         self.values = []
 
     def update(self):

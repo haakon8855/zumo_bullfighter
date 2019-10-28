@@ -6,8 +6,8 @@ from behaviour import Behaviour
 class AvoidLineCrossing(Behaviour):
     '''Creates motor recommendation to prevent the robot from crossing the line'''
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, bbcon, sensob_list):
+        super().__init__(bbcon, sensob_list)
         self.priority = 100   #May change
         self.match_degree = 0
         self.sensor_values = []

@@ -17,7 +17,6 @@ class FollowRed(Behaviour):
         self.sense_and_act()
 
     def sense_and_act(self):
-        # TODO get information about where it is red
         values = self.sensob_camera.update()
         if values[0] > values[1] and values[0] > values[2]:
             self.update_mr("L", 25)

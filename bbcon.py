@@ -1,4 +1,4 @@
-'''plab2_gruppe20'''
+"""plab2_gruppe20"""
 
 from time import sleep
 
@@ -6,8 +6,8 @@ from arbitrator import Arbitrator
 from motob import Motob
 
 
-class BBCON():
-    '''Behaviour based controller'''
+class BBCON:
+    """Behaviour based controller"""
 
     timestep = 0.5
 
@@ -21,17 +21,17 @@ class BBCON():
         self.arbitrator = Arbitrator(self)
 
     def add_behaviour(self, behaviour):
-        '''Adds a new behaviour to the list of behaviours'''
+        """Adds a new behaviour to the list of behaviours"""
         if behaviour not in self.behaviours:
             self.behaviours.append(behaviour)
 
     def add_sensob(self, sensob):
-        '''Adds a new sensob to the list of sensobs'''
+        """Adds a new sensob to the list of sensobs"""
         if sensob not in self.sensobs:
             self.sensobs.append(sensob)
 
     def activate_behaviour(self, behaviour):
-        '''Sets an inactive behaviour as active'''
+        """Sets an inactive behaviour as active"""
         if (behaviour in self.behaviours and
                 behaviour not in self.active_behaviours and
                 behaviour in self.inactive_behaviours):
@@ -39,7 +39,7 @@ class BBCON():
             self.active_behaviours.append(behaviour)
 
     def deactivate_behaviour(self, behaviour):
-        '''Sets an active behaviour as inactive'''
+        """Sets an active behaviour as inactive"""
         if (behaviour in self.behaviours and
                 behaviour in self.active_behaviours and
                 behaviour not in self.inactive_behaviours):
@@ -47,8 +47,8 @@ class BBCON():
             self.inactive_behaviours.append(behaviour)
 
     def run_one_timestep(self):
-        '''Runs one timestep by updating sensors,
-        behaviors, arbitrator and motors'''
+        """Runs one timestep by updating sensors,
+        behaviors, arbitrator and motors"""
         self.update_sensobs()
         self.update_behaviours()
         motor_recommendation = self.arbitrator.choose_action()
@@ -57,22 +57,22 @@ class BBCON():
         self.reset_sensobs()
 
     def update_sensobs(self):
-        '''Instructs all sensobs to get value from sensors and save it.'''
+        """Instructs all sensobs to get value from sensors and save it."""
         for sensob in self.sensobs:
             sensob.update()
 
     def reset_sensobs(self):
-        '''Instructs all sensobs to reset if it needs to'''
+        """Instructs all sensobs to reset if it needs to"""
         for sensob in self.sensobs:
             sensob.reset()
 
     def update_behaviours(self):
-        '''Instructs all behaviours to make a motor recommendation.'''
+        """Instructs all behaviours to make a motor recommendation."""
         for behaviour in self.active_behaviours:
             behaviour.update()
 
     def update_motob(self, moto_rec):
-        '''Updates the motobs to do the requested motor recommendation'''
+        """Updates the motobs to do the requested motor recommendation"""
         self.motob.update(moto_rec)
 
 

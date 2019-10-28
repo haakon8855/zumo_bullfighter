@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
+
 class Ultrasonic():
 
     def __init__(self):
@@ -12,7 +13,7 @@ class Ultrasonic():
     def setup(self):
         GPIO.setmode(GPIO.BOARD)
 
-    def get_value(self):  return self.value
+    def get_value(self): return self.value
 
     def update(self):
         self.value = self.sensor_get_value()

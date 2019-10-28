@@ -51,9 +51,7 @@ class BBCON():
         behaviors, arbitrator and motors'''
         self.update_sensobs()
         self.update_behaviours()
-        motor_recommendation, halt = self.arbitrator.choose_action()
-        if halt:
-            self.running = False
+        motor_recommendation = self.arbitrator.choose_action()
         self.update_motob(motor_recommendation)
         sleep(self.timestep)
         self.reset_sensobs()

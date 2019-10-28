@@ -21,6 +21,5 @@ class Arbitrator():
                 best_index = i
 
         action = self.bbcon.active_behaviours[best_index].get_mr()
-        halt = action[2]
         action = action[:2]
-        return action, halt
+        return action

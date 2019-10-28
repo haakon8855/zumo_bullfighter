@@ -1,13 +1,12 @@
 """Sensor object - Camera"""
 
 from sensob import Sensob
-from PIL import Image
 
-#from dependencies.imager2 import Imager
-#from dependencies.camera import Camera
+from dependencies.imager2 import Imager
+from sensobs.camera import Camera
 
-from camera_test import CameraTest
-from imager2 import Imager
+#from camera_test import CameraTest
+#from imager2 import Imager
 
 class SensobCamera(Sensob):
 
@@ -36,7 +35,7 @@ class SensobCamera(Sensob):
             red_pixels = 0
             for x in range(int(int(self.imager.xmax)/3)*(side), int(int(self.imager.xmax)/3)*(side+1)):
                 for y in range(int(self.imager.ymax)):
-                    print("x = " + str(x) + " y = " + str(y))
+                    #print("x = " + str(x) + " y = " + str(y))
                     r, g, b = self.imager.get_pixel(x, y)
                     if r > 140 and g < 120 and b < 120:
                         red_pixels += 1
@@ -47,10 +46,10 @@ class SensobCamera(Sensob):
         return self.image.getpixel((x, y))
 
 if __name__ == '__main__':
-    #camera_test = Camera()
-    camera_test2 = CameraTest("el-matador.png")
+    camera_test = Camera()
+    #camera_test2 = CameraTest("red-shades.png")
     imager = Imager()
-    sensob_camera = SensobCamera(camera_test2, imager)
-    #while True:
-    sensob_camera.update_image()
-    print("Rode pixler i %: " + str(sensob_camera.calculate_value()))
+    sensob_camera = SensobCamera(camera_test, imager)
+    while True:
+        sensob_camera.update_image()
+        print("Rode pixler i %: " + str(sensob_camera.calculate_value()))

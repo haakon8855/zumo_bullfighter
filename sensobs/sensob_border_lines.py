@@ -16,7 +16,7 @@ class SensobBorderLines(Sensob):
     def update(self):
         '''Updates the values from the IR sensor array'''
         self.values = self.ir_wrapper.update()
-        print("IR-sensors - array values: " + self.values)
+        print("IR-sensors - array values: " + str(self.values))
         return self.values
 
     def get_value(self):

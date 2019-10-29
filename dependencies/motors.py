@@ -9,7 +9,7 @@ class Motors:
         self.setup()
 
     def setup(self):
-        self.max = 1024
+        self.max = 512 # 1024
         self.high = 500
         self.normal = 300
         self.low = 100
@@ -112,4 +112,3 @@ class Motors:
         if duration:
             sleep(duration)
             self.stop()
-

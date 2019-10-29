@@ -3,7 +3,7 @@
 from sensob import Sensob
 
 from dependencies.imager2 import Imager
-from camera import Camera
+from dependencies.camera import Camera
 
 #from camera_test import CameraTest
 #from imager2 import Imager
@@ -16,12 +16,12 @@ class SensobCamera(Sensob):
         self.camera = Camera()
         self.image = None       # self.image is an Image object
         self.imager = Imager()
+        self.value = []
 
     def update(self):
         self.update_image()
-        print("Sensob_camera - values of red in the image: " + self.calculate_value())
+        print("Sensob_camera - values of red in the image: " + str(self.calculate_value()))
         return self.calculate_value()
-
 
     def update_image(self):
         """Updates the value, which is the current image"""
@@ -42,6 +42,7 @@ class SensobCamera(Sensob):
                     if r > 140 and g < 120 and b < 120:
                         red_pixels += 1
             list_sides[side] = red_pixels / total_pixels
+        self.value = list_sides
         return list_sides
 
     def get_pixel(self, x, y):

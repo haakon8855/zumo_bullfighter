@@ -5,6 +5,8 @@ from time import sleep
 from arbitrator import Arbitrator
 from motob import Motob
 
+from dependencies.zumo_button import ZumoButton
+
 from avoid_line_crossing import AvoidLineCrossing
 from avoid_wall import AvoidWall
 from default_movement import DefaultMovement
@@ -19,7 +21,7 @@ from sensob_ultrasonic import SensobUltrasonic
 class BBCON:
     """Behaviour based controller"""
 
-    timestep = 0.5
+    timestep = 0.00001
 
     def __init__(self):
         self.running = True
@@ -36,12 +38,12 @@ class BBCON:
         """Sets up behaviours and sensobs"""
         sensob_border_lines = SensobBorderLines()
         sensob_camera = SensobCamera()
-        sensob_push_button = SensobPushButton()
+        # sensob_push_button = SensobPushButton()
         sensob_ultrasonic = SensobUltrasonic()
-        self.zumo_btn = sensob_push_button
+        # self.zumo_btn = sensob_push_button
         self.sensobs.append(sensob_border_lines)
         self.sensobs.append(sensob_camera)
-        self.sensobs.append(sensob_push_button)
+        # self.sensobs.append(sensob_push_button)
         self.sensobs.append(sensob_ultrasonic)
         self.behaviours.append(AvoidLineCrossing(self, [sensob_border_lines]))
         self.behaviours.append(AvoidWall(self, [sensob_ultrasonic]))
@@ -106,13 +108,9 @@ class BBCON:
         """Updates the motobs to do the requested motor recommendation"""
         self.motob.update(moto_rec)
 
-    def wait_button(self):
-        """Waits for buttonpress"""
-        self.zumo_btn.wait_for_press()
-
-
 if __name__ == "__main__":
+    Z = ZumoButton()
+    Z.wait_for_press()
     BB = BBCON()
-    BB.wait_button()
     while BB.running:
         BB.run_one_timestep()

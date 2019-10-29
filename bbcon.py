@@ -29,6 +29,7 @@ class BBCON:
         self.sensobs = []
         self.motob = Motob()
         self.arbitrator = Arbitrator(self)
+        self.zumo_btn = None
         self.setup()
 
     def setup(self):
@@ -37,6 +38,7 @@ class BBCON:
         sensob_camera = SensobCamera()
         sensob_push_button = SensobPushButton()
         sensob_ultrasonic = SensobUltrasonic()
+        self.zumo_btn = sensob_push_button
         self.sensobs.append(sensob_border_lines)
         self.sensobs.append(sensob_camera)
         self.sensobs.append(sensob_push_button)
@@ -77,6 +79,7 @@ class BBCON:
     def run_one_timestep(self):
         """Runs one timestep by updating sensors,
         behaviors, arbitrator and motors"""
+        print("#####################################")
         self.update_sensobs()
         self.update_behaviours()
         motor_recommendation = self.arbitrator.choose_action()
@@ -103,8 +106,13 @@ class BBCON:
         """Updates the motobs to do the requested motor recommendation"""
         self.motob.update(moto_rec)
 
+    def wait_button(self):
+        """Waits for buttonpress"""
+        self.zumo_btn.wait_for_press()
+
 
 if __name__ == "__main__":
     BB = BBCON()
+    BB.wait_button()
     while BB.running:
         BB.run_one_timestep()

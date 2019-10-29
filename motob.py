@@ -11,7 +11,6 @@ class Motob:
 
     def __init__(self):
         """append the motors in motors"""
-        Z = ZumoButton()
         self.motor1 = Motors()
         self.motors = []  # liste over motorer objektet styrer
         self.value = []  # most recent motor recommendation eks ["L", 40] eller ["F", 50]

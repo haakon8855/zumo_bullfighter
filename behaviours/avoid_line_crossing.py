@@ -8,7 +8,7 @@ class AvoidLineCrossing(Behaviour):
 
     def __init__(self, bbcon, sensob_list):
         super().__init__(bbcon, sensob_list)
-        self.priority = 100   #May change
+        self.priority = 5.01   #May change
         self.match_degree = 0
         self.sensor_values = []
         self.threshold = 0.6
@@ -18,13 +18,13 @@ class AvoidLineCrossing(Behaviour):
         if (self.sensor_values[0] < self.threshold or
                 self.sensor_values[1] < self.threshold or
                 self.sensor_values[2] < self.threshold):
-            self.update_mr("BR", 50)
+            self.update_mr("BL", 100)
             self.match_degree = 1
 
         elif (self.sensor_values[3] < self.threshold or
               self.sensor_values[4] < self.threshold or
               self.sensor_values[5] < self.threshold): # Rar indentation, må ses på
-            self.update_mr("BL", 50) # Kjør til venstre
+            self.update_mr("BR", 100) # Kjør til venstre
             self.match_degree = 1
 
         else:
@@ -32,7 +32,3 @@ class AvoidLineCrossing(Behaviour):
             self.match_degree = 0
 
         self.update_weight(self.priority, self.match_degree)
-
-    def update(self):
-        """Reads from sensors and gives a MR (Motor recommendation)"""
-        self.sense_and_act()

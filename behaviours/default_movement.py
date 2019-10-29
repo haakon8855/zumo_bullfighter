@@ -12,7 +12,3 @@ class DefaultMovement(Behaviour):
         self.match_degree = 1
         self.update_weight(self.priority, self.match_degree)
         self.update_mr("FR", 20)
-
-    def update(self):
-        """Gives a default motor recommendation"""
-        self.sense_and_act()

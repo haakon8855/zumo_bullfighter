@@ -12,6 +12,7 @@ class Behaviour:
         self.active_flag = True
         self.halt_request = False
         self.weight = 0
+        self.last_flag = True
 
     def consider_deactivation(self):
         """Contemplates if it is to deactivate itself"""
@@ -28,7 +29,9 @@ class Behaviour:
             self.consider_activation()
 
         if self.active_flag:
-            self.sense_and_act()
+            if self.last_flag:
+                self.sense_and_act()
+        self.last_flag = self.active_flag
 
     def sense_and_act(self):
         """Reads from sensor, and sets new MR and weight"""

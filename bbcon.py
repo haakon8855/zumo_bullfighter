@@ -21,7 +21,7 @@ from sensob_ultrasonic import SensobUltrasonic
 class BBCON:
     """Behaviour based controller"""
 
-    timestep = 0.00001
+    timestep = 0.001
 
     def __init__(self):
         self.running = True
@@ -48,7 +48,7 @@ class BBCON:
         self.behaviours.append(AvoidLineCrossing(self, [sensob_border_lines]))
         self.behaviours.append(AvoidWall(self, [sensob_ultrasonic]))
         self.behaviours.append(DefaultMovement(self, []))
-        self.behaviours.append(FollowRed(self, [sensob_camera]))
+        self.behaviours.append(FollowRed(self, [sensob_camera, sensob_ultrasonic]))
         for behaviour in self.behaviours:
             self.active_behaviours.append(behaviour)
 
@@ -92,7 +92,12 @@ class BBCON:
     def update_sensobs(self):
         """Instructs all sensobs to get value from sensors and save it."""
         for sensob in self.sensobs:
-            sensob.update()
+            if sensob == self.sensobs[1]:
+                if self.behaviours[3].active_flag:
+                    sensob.update()
+            else:
+                sensob.update()
+
 
     def reset_sensobs(self):
         """Instructs all sensobs to reset if it needs to"""
@@ -101,7 +106,7 @@ class BBCON:
 
     def update_behaviours(self):
         """Instructs all behaviours to make a motor recommendation."""
-        for behaviour in self.active_behaviours:
+        for behaviour in self.behaviours:
             behaviour.update()
 
     def update_motob(self, moto_rec):

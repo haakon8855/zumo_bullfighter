@@ -62,13 +62,13 @@ class Motob:
             self.motors[0].set_left_speed(left_motor_value)
         elif robot_dir == "BL":
             right_motor_value = int((motor_value/100)*self.motor1.max)
-            left_motor_value = int((motor_value/100)*0.5*self.motor1.max)
+            left_motor_value = int((motor_value/100)*0.4*self.motor1.max)
             self.motors[0].set_left_dir(1)
             self.motors[0].set_right_dir(1)
             self.motors[0].set_right_speed(right_motor_value)
             self.motors[0].set_left_speed(left_motor_value)
         elif robot_dir == "BR":
-            right_motor_value = int((motor_value/100)*0.5*self.motor1.max)
+            right_motor_value = int((motor_value/100)*0.4*self.motor1.max)
             left_motor_value = int((motor_value/100)*self.motor1.max)
             self.motors[0].set_left_dir(1)
             self.motors[0].set_right_dir(1)
@@ -78,26 +78,3 @@ class Motob:
             self.motors[0].stop()
         else:
             print("why dis no work")
-
-if __name__ == '__main__':
-    testobj = Motob()
-    rec = ["FR", 70]
-    rec2 = ["B", 50]
-    rec3 = ["R", 180]
-    rec4 = ["L", 180]
-    rec5 = ["S", 0]
-    testobj.update(rec)
-    print("jepp")
-    t.sleep(1)
-    print("jepp")
-    testobj.update(rec2)
-    print("jepp")
-    t.sleep(0.5)
-    testobj.update(rec3)
-    print("jepp")
-    t.sleep(0.5)
-    testobj.update(rec4)
-    print("jepp")
-    t.sleep(0.5)
-    testobj.update(rec5)
-    print("jepp end")

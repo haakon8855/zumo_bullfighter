@@ -37,7 +37,7 @@ class Motob:
             speed_list = [speed_prosentage, speed_prosentage]
             self.motors[0].set_value(speed_list)
         elif robot_dir == "R":
-            speed_prosentage_left = sqrt(motor_value/180)#motor_value/360  # dette blir feil men bruker midlertidig
+            speed_prosentage_left = sqrt(motor_value/180)#motor_value/360
             speed_prosentage_right = -sqrt(motor_value/180)#-motor_value/360
             speed_list = [speed_prosentage_left, speed_prosentage_right]
             self.motors[0].set_value(speed_list)
@@ -47,17 +47,31 @@ class Motob:
             speed_list = [speed_prosentage_left, speed_prosentage_right]
             self.motors[0].set_value(speed_list)
         elif robot_dir == "FL":
-            right_motor_value = int((motor_value/100)*1024)
-            left_motor_value = int((motor_value/100)*0.5*1024)
+            right_motor_value = int((motor_value/100)*self.motor1.max)
+            left_motor_value = int((motor_value/100)*0.5*self.motor1.max)
             self.motors[0].set_left_dir(0)
             self.motors[0].set_right_dir(0)
             self.motors[0].set_right_speed(right_motor_value)
             self.motors[0].set_left_speed(left_motor_value)
         elif robot_dir == "FR":
-            right_motor_value = int((motor_value/100)*0.5*1024)
-            left_motor_value = int((motor_value/100)*1024)
+            right_motor_value = int((motor_value/100)*0.5*self.motor1.max)
+            left_motor_value = int((motor_value/100)*self.motor1.max)
             self.motors[0].set_left_dir(0)
             self.motors[0].set_right_dir(0)
+            self.motors[0].set_right_speed(right_motor_value)
+            self.motors[0].set_left_speed(left_motor_value)
+        elif robot_dir == "BL":
+            right_motor_value = int((motor_value/100)*self.motor1.max)
+            left_motor_value = int((motor_value/100)*0.5*self.motor1.max)
+            self.motors[0].set_left_dir(1)
+            self.motors[0].set_right_dir(1)
+            self.motors[0].set_right_speed(right_motor_value)
+            self.motors[0].set_left_speed(left_motor_value)
+        elif robot_dir == "BR":
+            right_motor_value = int((motor_value/100)*0.5*self.motor1.max)
+            left_motor_value = int((motor_value/100)*self.motor1.max)
+            self.motors[0].set_left_dir(1)
+            self.motors[0].set_right_dir(1)
             self.motors[0].set_right_speed(right_motor_value)
             self.motors[0].set_left_speed(left_motor_value)
         elif robot_dir == "S":

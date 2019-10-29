@@ -18,13 +18,13 @@ class AvoidLineCrossing(Behaviour):
         if (self.sensor_values[0] < self.threshold or
                 self.sensor_values[1] < self.threshold or
                 self.sensor_values[2] < self.threshold):
-            self.update_mr("L", 150)
+            self.update_mr("BR", 50)
             self.match_degree = 1
 
         elif (self.sensor_values[3] < self.threshold or
               self.sensor_values[4] < self.threshold or
               self.sensor_values[5] < self.threshold): # Rar indentation, må ses på
-            self.update_mr("L", 150) # Kjør til venstre
+            self.update_mr("BL", 50) # Kjør til venstre
             self.match_degree = 1
 
         else:

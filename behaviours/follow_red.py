@@ -23,7 +23,7 @@ class FollowRed(Behaviour):
             self.update_mr("L", 25)
             self.match_degree = values[0]
         elif values[1] >= values[0] and values[1] >= values[2]:
-            self.update_mr("F", 50)
+            self.update_mr("F", 20)
             self.match_degree = values[1]
         elif values[2] >= values[0] and values[2] > values[1]:
             self.update_mr("R", 25)

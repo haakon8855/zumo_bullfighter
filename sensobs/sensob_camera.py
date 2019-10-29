@@ -19,6 +19,7 @@ class SensobCamera(Sensob):
 
     def update(self):
         self.update_image()
+        print("Sensob_camera - values of red in the image: " + self.calculate_value())
         return self.calculate_value()
 
 

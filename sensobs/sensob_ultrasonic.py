@@ -13,6 +13,7 @@ class SensobUltrasonic(Sensob):
     def update(self):
         self.ultra_sonic.update()
         self.value = self.ultra_sonic.get_value() / 100
+        print("Sensob_ultrasonic - distance: " + self.value)
 
     def get_value(self):
         return self.value

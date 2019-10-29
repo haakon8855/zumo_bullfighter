@@ -4,10 +4,11 @@ from behaviour import Behaviour
 
 
 class FollowRed(Behaviour):
+    """Class for following red"""
 
     def __init__(self, bbcon, sensob_list):
         super().__init__(bbcon, sensob_list)
-        self.priority = 7  # May change
+        self.priority = 20  # May change
         self.match_degree = 0
         self.sensob_camera = sensob_list[0]
         self.values = []

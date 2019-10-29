@@ -59,7 +59,7 @@ class Ultrasonic:
     def send_activation_pulse(self):
         GPIO.output(self.trig_pin, GPIO.LOW)
         # Sensoren kan krasje dersom man ikke har et delay her. Dersom den fortsatt krasjer, prov aa oke delayet
-        time.sleep(0.3)
+        time.sleep(0.003)
 
         # Ultralyd sensoren starter naar den mottar en puls, med lengde 10uS paa trig pinnen.
         # Vi gjor dette ved aa sette trig_pin hoy, venter i 10uS og setter den lav igjen.

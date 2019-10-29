@@ -9,7 +9,7 @@ class SensobBorderLines(Sensob):
 
     def __init__(self):
         super().__init__()
-        self.ir_wrapper = ReflectanceSensors()
+        self.ir_wrapper = ReflectanceSensors(False, 400, 3000)
         self.values = [0, 0, 0, 0, 0, 0]
         self.threshold = 0.1
 

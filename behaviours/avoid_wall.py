@@ -1,4 +1,4 @@
-'''plab2_gruppe20'''
+"""plab2_gruppe20"""
 
 from math import exp
 
@@ -6,7 +6,7 @@ from behaviour import Behaviour
 
 
 class AvoidWall(Behaviour):
-    '''Creates motor recommendation to prevent the robot from running into a wall'''
+    """Creates motor recommendation to prevent the robot from running into a wall"""
 
     def __init__(self, bbcon, sensob_list):
         super().__init__(bbcon, sensob_list)
@@ -16,6 +16,7 @@ class AvoidWall(Behaviour):
         self.distance = 1000
 
     def sense_and_act(self):
+        """Reads from sensor, and sets new MR and weight"""
         self.distance = self.ultrasonic.get_value()
         self.match_degree = 1/(exp(self.distance))
         self.update_weight(self.priority, self.match_degree)

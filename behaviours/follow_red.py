@@ -17,16 +17,19 @@ class FollowRed(Behaviour):
         self.last_flag = False
 
     def consider_deactivation(self):
+        """Contemplates if it is to deactivate itself"""
         if self.sensob_ultrasonic.get_value() >= 0.20:
             self.active_flag = False
             self.bbcon.deactivate_behaviour(self)
 
     def consider_activation(self):
+        """Contemplates if it is to activate itself"""
         if self.sensob_ultrasonic.get_value() < 0.20:
             self.active_flag = True
             self.bbcon.activate_behaviour(self)
 
     def sense_and_act(self):
+        """Reads from sensor, and sets new MR and weight"""
         values = self.sensob_camera.get_value()
         if values[0] > values[1] and values[0] > values[2]:
             self.update_mr("L", 10)

@@ -1,10 +1,10 @@
-'''plab2_gruppe20'''
+"""plab2_gruppe20"""
 
 from behaviour import Behaviour
 
 
 class AvoidLineCrossing(Behaviour):
-    '''Creates motor recommendation to prevent the robot from crossing the line'''
+    """Creates motor recommendation to prevent the robot from crossing the line"""
 
     def __init__(self, bbcon, sensob_list):
         super().__init__(bbcon, sensob_list)
@@ -14,6 +14,7 @@ class AvoidLineCrossing(Behaviour):
         self.threshold = 0.6
 
     def sense_and_act(self):
+        """Reads from sensor, and sets new MR and weight"""
         self.sensor_values = self.sensob_list[0].get_value()
         if (self.sensor_values[0] < self.threshold or
                 self.sensor_values[1] < self.threshold or

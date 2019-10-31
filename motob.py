@@ -28,7 +28,6 @@ class Motob:
             if ltr not in "LRFBS":
                 raise Exception("Må være S L R F eller B")
         if robot_dir == "F":
-            print("in F", motor_value/100, 2)
             speed_list = [motor_value/100, motor_value/100]
             self.motors[0].set_value(speed_list)  # tester direkte med motor1
         elif robot_dir == "B":
@@ -59,21 +58,16 @@ class Motob:
             self.motors[0].set_right_dir(0)
             self.motors[0].set_right_speed(right_motor_value)
             self.motors[0].set_left_speed(left_motor_value)
-        elif robot_dir == "BL":
-            right_motor_value = int((motor_value/100)*self.motor1.max)
-            left_motor_value = int((motor_value/100)*0.4*self.motor1.max)
+        elif robot_dir in ("BL", "BR"):
             self.motors[0].set_left_dir(1)
             self.motors[0].set_right_dir(1)
-            self.motors[0].set_right_speed(right_motor_value)
-            self.motors[0].set_left_speed(left_motor_value)
-        elif robot_dir == "BR":
-            right_motor_value = int((motor_value/100)*0.4*self.motor1.max)
-            left_motor_value = int((motor_value/100)*self.motor1.max)
-            self.motors[0].set_left_dir(1)
-            self.motors[0].set_right_dir(1)
+            if robot_dir == "BL":
+                right_motor_value = int((motor_value/100)*self.motor1.max)
+                left_motor_value = int((motor_value/100)*0.4*self.motor1.max)
+            if robot_dir == "BR":
+                right_motor_value = int((motor_value/100)*0.4*self.motor1.max)
+                left_motor_value = int((motor_value/100)*self.motor1.max)
             self.motors[0].set_right_speed(right_motor_value)
             self.motors[0].set_left_speed(left_motor_value)
         elif robot_dir == "S":
             self.motors[0].stop()
-        else:
-            print("why dis no work")

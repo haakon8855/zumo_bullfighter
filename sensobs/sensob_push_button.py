@@ -14,3 +14,7 @@ class SensobPushButton(Sensob):
     def wait_for_press(self):
         '''Calls the wrappers method of same name, runs an infinite loop until button is pressed'''
         self.button_wrapper.wait_for_press()
+
+    def get_value(self):
+        """Returns the last collected sensor value"""
+        return self.value

@@ -8,6 +8,7 @@ from dependencies.camera import Camera
 #from camera_test import CameraTest
 #from imager2 import Imager
 
+
 class SensobCamera(Sensob):
     """Camera sensob for detecting red pixels"""
 
@@ -19,8 +20,10 @@ class SensobCamera(Sensob):
         self.value = []
 
     def update(self):
+        """Gets new and updated values from sensor"""
         self.update_image()
-        print("Sensob_camera - values of red in the image: " + str(self.calculate_value()))
+        print("Sensob_camera - values of red in the image: " +
+              str(self.calculate_value()))
         return self.calculate_value()
 
     def update_image(self):
@@ -35,7 +38,8 @@ class SensobCamera(Sensob):
         list_sides = [0, 0, 0]
         for side in range(3):
             red_pixels = 0
-            for x in range(int(int(self.imager.xmax)/3)*(side), int(int(self.imager.xmax)/3)*(side+1)):
+            for x in range(int(int(self.imager.xmax)/3)*(side),
+                           int(int(self.imager.xmax)/3)*(side+1)):
                 for y in range(int(self.imager.ymax)):
                     #print("x = " + str(x) + " y = " + str(y))
                     r, g, b = self.imager.get_pixel(x, y)

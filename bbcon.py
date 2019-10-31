@@ -81,6 +81,10 @@ class BBCON:
         self.update_behaviours()
         motor_recommendation = self.arbitrator.choose_action()
         self.update_motob(motor_recommendation)
+        if self.behaviours[3].active_flag:
+            self.timestep = 0.001
+        else:
+            self.timestep = 0.3
         sleep(self.timestep)
         self.reset_sensobs()
 

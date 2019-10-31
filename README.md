@@ -1,4 +1,4 @@
-# plab2_oving6
+# Zumo Bullfighter
 
 Zumo robot made to resemble a bull chasing a red cloth.
 The robot will roam a field and look. If something comes

@@ -9,10 +9,11 @@ class Sensob():
         self.list_sensors = []
 
     def update(self):
-        pass
+        """Gets new and updated values from sensor"""
 
     def get_value(self):
+        """Returns the last collected sensor value"""
         return self.value
 
     def reset(self):
-        """Resets"""
+        """Resets sensor values if it is needed"""

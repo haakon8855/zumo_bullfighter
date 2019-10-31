@@ -1,9 +1,8 @@
 """plab2_gruppe20"""
 
-from dependencies.motors import Motors
-import time as t
 from math import sqrt
-from dependencies.zumo_button import ZumoButton
+
+from dependencies.motors import Motors
 
 
 class Motob:

@@ -1,6 +1,6 @@
 """Sensor object - Camera"""
 
-from sensob import Sensob
+from sensobs.sensob import Sensob
 
 from dependencies.imager2 import Imager
 from dependencies.camera import Camera

@@ -1,14 +1,14 @@
-'''plab2_gruppe20'''
+"""plab2_gruppe20"""
 
 
 class Arbitrator():
-    '''Arbitrator class used to choose actuator'''
+    """Arbitrator class used to choose actuator"""
 
     def __init__(self, BBCON):
         self.bbcon = BBCON
 
     def choose_action(self):
-        '''Chooses the action with the highest priority'''
+        """Chooses the action with the highest priority"""
         mr_list = []
         best_weight = 0
         best_index = 0
@@ -25,5 +25,10 @@ class Arbitrator():
 
         action = self.bbcon.active_behaviours[best_index].get_mr()
         print("Chose: ", action)
-        action = action[:2]
+        action = self.strip_last_elem(action)
         return action
+
+    @staticmethod
+    def strip_last_elem(in_list):
+        """Removes the last element in a 3-element list"""
+        return in_list[:2]

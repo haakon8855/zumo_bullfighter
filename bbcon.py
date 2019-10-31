@@ -14,7 +14,6 @@ from follow_red import FollowRed
 
 from sensob_border_lines import SensobBorderLines
 from sensob_camera import SensobCamera
-from sensob_push_button import SensobPushButton
 from sensob_ultrasonic import SensobUltrasonic
 
 
@@ -31,19 +30,15 @@ class BBCON:
         self.sensobs = []
         self.motob = Motob()
         self.arbitrator = Arbitrator(self)
-        self.zumo_btn = None
         self.setup()
 
     def setup(self):
         """Sets up behaviours and sensobs"""
         sensob_border_lines = SensobBorderLines()
         sensob_camera = SensobCamera()
-        # sensob_push_button = SensobPushButton()
         sensob_ultrasonic = SensobUltrasonic()
-        # self.zumo_btn = sensob_push_button
         self.sensobs.append(sensob_border_lines)
         self.sensobs.append(sensob_camera)
-        # self.sensobs.append(sensob_push_button)
         self.sensobs.append(sensob_ultrasonic)
         self.behaviours.append(AvoidLineCrossing(self, [sensob_border_lines]))
         self.behaviours.append(AvoidWall(self, [sensob_ultrasonic]))

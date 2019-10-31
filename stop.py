@@ -1,4 +1,4 @@
-"""aaa"""
+"""Stops the motors from running"""
 from dependencies.zumo_button import ZumoButton
 from motob import Motob
 

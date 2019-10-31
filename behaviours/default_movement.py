@@ -11,4 +11,4 @@ class DefaultMovement(Behaviour):
         self.priority = 5
         self.match_degree = 1
         self.update_weight(self.priority, self.match_degree)
-        self.update_mr("FR", 20)
+        self.update_mr("FR", 17)

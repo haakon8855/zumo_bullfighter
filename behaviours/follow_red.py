@@ -32,12 +32,12 @@ class FollowRed(Behaviour):
         """Reads from sensor, and sets new MR and weight"""
         values = self.sensob_camera.get_value()
         if values[0] > values[1] and values[0] > values[2]:
-            self.update_mr("L", 10)
+            self.update_mr("L", 8)
             self.match_degree = values[0]
         elif values[1] >= values[0] and values[1] >= values[2]:
             self.update_mr("F", 30)
             self.match_degree = values[1]
         elif values[2] >= values[0] and values[2] > values[1]:
-            self.update_mr("R", 10)
+            self.update_mr("R", 8)
             self.match_degree = values[2]
         self.update_weight(self.priority, self.match_degree)

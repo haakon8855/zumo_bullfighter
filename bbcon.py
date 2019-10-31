@@ -7,14 +7,14 @@ from motob import Motob
 
 from dependencies.zumo_button import ZumoButton
 
-from avoid_line_crossing import AvoidLineCrossing
-from avoid_wall import AvoidWall
-from default_movement import DefaultMovement
-from follow_red import FollowRed
+from behaviours.avoid_line_crossing import AvoidLineCrossing
+from behaviours.avoid_wall import AvoidWall
+from behaviours.default_movement import DefaultMovement
+from behaviours.follow_red import FollowRed
 
-from sensob_border_lines import SensobBorderLines
-from sensob_camera import SensobCamera
-from sensob_ultrasonic import SensobUltrasonic
+from sensobs.sensob_border_lines import SensobBorderLines
+from sensobs.sensob_camera import SensobCamera
+from sensobs.sensob_ultrasonic import SensobUltrasonic
 
 
 class BBCON:

@@ -1,6 +1,6 @@
 '''plab2_gruppe20'''
 
-from sensob import Sensob
+from sensobs.sensob import Sensob
 from dependencies.zumo_button import ZumoButton
 
 
